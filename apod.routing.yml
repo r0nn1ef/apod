@@ -2,6 +2,6 @@ apod.settings:
   path: /admin/config/services/apod
   defaults:
     _form: '\Drupal\apod\Form\ApodSettingsForm'
-    _title: 'NASA Astronomy Picture of the Day Settings'
+    _title: 'Astronomy Picture of the Day Settings'
   requirements:
     _permission: 'administer site configuration'

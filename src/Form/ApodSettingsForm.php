@@ -22,8 +22,6 @@ class ApodSettingsForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('apod.settings');
     
-    // https://api.nasa.gov/index.html#
-
     $url = Url::fromUri('https://api.nasa.gov/index.html', array('fragment' => 'apply-for-an-api-key',) )->toUriString();
 
     $form['api_key'] = array(

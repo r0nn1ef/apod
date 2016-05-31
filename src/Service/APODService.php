@@ -9,7 +9,7 @@
 namespace Drupal\apod\Service;
 
 
-class NASAApod {
+class APODService {
 
   private $api_key;
 

@@ -38,7 +38,7 @@ class APODService {
         'query' => array(
           'api_key' => $this->api_key,
           'date' => $date->format('Y-m-d'),
-          'hd' => $useHD,
+          'hd' => (int) $useHD,
         )
       );
 

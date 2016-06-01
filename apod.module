@@ -1,0 +1,21 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: ronald
+ * Date: 6/1/16
+ * Time: 3:00 PM
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function apod_theme($existing, $type, $theme, $path) {
+  return array(
+    'apod_image' => array(
+      'template' => 'apod_image',
+      'variables' => array(
+        'item' => array(),
+      ),
+    )
+  );
+}

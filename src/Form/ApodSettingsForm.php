@@ -27,7 +27,7 @@ class ApodSettingsForm extends ConfigFormBase {
     $form['api_key'] = array(
       '#type' => 'textfield',
       '#title' => $this->t('API Key'),
-      '#description' => $this->t('api.nasa.gov key for expanded usage; <a href=":link" target="_blank">Register for a NASA API key.</a>', array(':link' => $url)),
+      '#description' => $this->t('<a href=":link" target="_blank">Register for a NASA API key.</a>', array(':link' => $url)),
       '#default_value' => $config->get('api_key'),
     );
 

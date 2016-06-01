@@ -26,10 +26,13 @@ class APODDefaultBlock extends BlockBase {
    */
   public function build() {
     $service = \Drupal::service('apod.service');
-    $build = [];
-    $build['apoddefault_block']['#markup'] = '<pre>' . print_r($service->getImage(NULL, TRUE), TRUE) . '</pre>';
+    $image = $service->getImage(NULL, TRUE);
 
-    return $build;
+    return array(
+      '#theme' => 'apod_image',
+      '#item' => (array)$image,
+    );
+    
   }
 
 }

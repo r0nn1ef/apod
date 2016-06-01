@@ -1,0 +1,8 @@
+{% if item.media_type == 'video' %}
+    <h4>{{ item.title }}</h4>
+    <iframe class="apod-video" width="200" height="150" src="{{ item.url }}" frameborder="0" allowfullscreen></iframe>
+{% else %}
+    <h4>{{ item.title }}</h4>
+    <img src="{{ item.url }}" class="apod-block-image" alt="{{ item.title }}" style="width:100%;height:auto" />
+{% endif %}
+{{ item }}

@@ -44,7 +44,11 @@ class ApodSettingsForm extends ConfigFormBase {
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $config = $this->config('apod.settings');
-    $config->set('api_key', $form_state->getValue('api_key') );
+    $value = $form_state->getValue('api_key');
+    if ( empty($value) ) {
+      $value = 'DEMO_KEY';
+    }
+    $config->set('api_key', $value );
     $config->save();
     parent::submitForm($form, $form_state);
   }

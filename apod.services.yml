@@ -1,3 +1,3 @@
 services:
-  apod_service:
+  apod.service:
      class: Drupal\apod\Service\APODService

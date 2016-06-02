@@ -24,8 +24,14 @@ class APODService {
   }
 
   public function getImage(\Drupal\Core\Datetime\DrupalDateTime $date = NULL, $useHD = FALSE) {
+    /*
+     * We want our datetime to be midnight on the given day so we can expire the cache properly.
+     */
     if ( is_null($date) ) {
-      $date = new DrupalDateTime();
+      $date = DrupalDateTime::createFromTimestamp( mktime(0, 0, 0, date('m'), date('j'), date('Y') ) ) ;
+    } else {
+      $date = $date->format('U');
+      $date = DrupalDateTime::createFromTimestamp( mktime(0, 0, 0, date('m', $date), date('j', $date), date('Y', $date) ) );
     }
 
     $cid = 'apod:' . $date->format('Y-m-d') . (!$useHD ? '' : '-HD');
@@ -59,8 +65,10 @@ class APODService {
         drupal_set_message('HTTP request resulted in a ' . $response->getStatusCode() . ' response', 'warning');
         return FALSE;
       }
+      
+      $expire = $date->format('U') + (60 * 60 * 24); // expires in one day.
 
-      \Drupal::cache()->set($cid, $data);
+      \Drupal::cache()->set($cid, $data, $expire);
     }
 
     return $data;

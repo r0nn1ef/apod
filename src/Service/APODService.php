@@ -66,7 +66,7 @@ class APODService {
         return FALSE;
       }
       
-      $expire = $date->format('U') + (60 * 60 * 24); // expires in one day.
+      $expire = $date->format('U') + (60 * 60 * 24); // expire the cache in one day.
 
       \Drupal::cache()->set($cid, $data, $expire);
     }

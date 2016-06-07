@@ -1,0 +1,5 @@
+default_block:
+  version: 1.x
+  css:
+    theme:
+      css/theme/theme--default-block.css: {}

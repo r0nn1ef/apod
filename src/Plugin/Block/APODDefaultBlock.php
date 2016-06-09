@@ -31,6 +31,11 @@ class APODDefaultBlock extends BlockBase {
     return array(
       '#theme' => 'apod_image',
       '#item' => (array)$image,
+      '#attached' => array(
+        'library' =>  array(
+          'apod/default_block'
+        ),
+      ),
     );
     
   }

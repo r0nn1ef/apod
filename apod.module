@@ -16,6 +16,12 @@ function apod_theme($existing, $type, $theme, $path) {
       'variables' => array(
         'item' => array(),
       ),
-    )
+    ),
+    'apod_video' => array(
+      'template' => 'apod_video',
+      'variables' => array(
+        'item' => array(),
+      ),
+    ),
   );
 }

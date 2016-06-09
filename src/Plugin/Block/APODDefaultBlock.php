@@ -29,7 +29,7 @@ class APODDefaultBlock extends BlockBase {
     $image = $service->getImage(NULL, TRUE);
 
     return array(
-      '#theme' => 'apod_image',
+      '#theme' => ($image->type == 'video' ? 'apod_video' : 'apod_image'),
       '#item' => (array)$image,
       '#attached' => array(
         'library' =>  array(

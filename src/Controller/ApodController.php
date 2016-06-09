@@ -40,7 +40,7 @@ class ApodController extends ControllerBase {
     
 
 
-    $build['image'] = array(
+    $build['content']['image'] = array(
       '#theme' => ($image->type == 'video' ? "apod_video" : "apod_image"),
       '#item' => (array)$image,
       '#attached' => array(
@@ -53,7 +53,7 @@ class ApodController extends ControllerBase {
     if ( $date->format('U') > $first_image->format('U') ) {
       $previous_date = DrupalDateTime::createFromTimestamp( $date->format('U') - self::ONE_DAY );
       $path = 'astronomy-picture-of-the-day/' . $previous_date->format('Y-m-d');
-      $build['prev_link'] = array(
+      $build['content']['prev_link'] = array(
         '#theme' => 'link',
         '#path' => $path,
         '#alt' => '',
@@ -64,7 +64,7 @@ class ApodController extends ControllerBase {
     if ( $date->format('U') > $today->format('U') ) {
       $next_date = DrupalDateTime::createFromTimestamp( $date->format('U') + self::ONE_DAY );
       $path = 'astronomy-picture-of-the-day/' . $next_date->format('Y-m-d');
-      $build['next_link'] = array(
+      $build['content']['next_link'] = array(
         '#theme' => 'link',
         '#path' => $path,
         '#alt' => '',

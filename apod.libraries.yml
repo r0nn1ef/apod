@@ -3,3 +3,8 @@ default_block:
   css:
     theme:
       css/theme/theme--default-block.css: {}
+default_page:
+  version: 1.x
+  css:
+    theme:
+      css/theme/theme-default-page.css: {}

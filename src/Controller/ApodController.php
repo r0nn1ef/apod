@@ -41,8 +41,13 @@ class ApodController extends ControllerBase {
 
 
     $build['image'] = array(
-      '#type' => 'markup',
-      '#markup' => '<pre>' . print_r($image, TRUE) . '</pre>',
+      '#theme' => ($image->type == 'video' ? "apod_video" : "apod_image"),
+      '#item' => (array)$image,
+      '#attached' => array(
+        'library' =>  array(
+          'apod/default_page'
+        ),
+      ),
     );
 
     if ( $date->format('U') > $first_image->format('U') ) {

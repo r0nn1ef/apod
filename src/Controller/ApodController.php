@@ -35,13 +35,11 @@ class ApodController extends ControllerBase {
     }
 
     $service = \Drupal::service('apod.service');
-
     $image = $service->getImage($date, TRUE);
 
     /*
-     * @todo add a working pager for previous and next images.
+     * Set up an empty array for our pagination.
      */
-
     $items = array();
 
     if ( $date->format('U') > $first_image->format('U') ) {

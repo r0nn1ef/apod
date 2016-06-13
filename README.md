@@ -15,8 +15,8 @@ Once enabled, you will be able to use the following features:
 * There will be a block named &quot;_Astronomy Picture of the Day Block_&quot; 
 under Structure &raquo; Block Layout. You can add this block as you would any 
 other Drupal Block.
-* The full sized image can be accessed by going to _{site_url}_/astronomy-picture-of-the-day or 
-_{site_url}_/astronomy-picture-of-the-day/{date} where {date} is any valid date either in the 
+* The full sized image can be accessed by going to _{site_url}/astronomy-picture-of-the-day_ or 
+_{site_url}/astronomy-picture-of-the-day/{date}_ where {date} is any valid date either in the 
 _YYYY-MM-DD_ format or a UNIX timestamp.
 
 ## TODO

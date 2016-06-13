@@ -63,6 +63,7 @@ class ApodController extends ControllerBase {
 
     $build['content'] = array(
       '#theme' => 'apod_content',
+      '#title' => array('#plain_text' => $image->title),
       '#image' =>array(
         '#theme' => ($image->type == 'video' ? "apod_video" : "apod_image"),
         '#item' => (array)$image,

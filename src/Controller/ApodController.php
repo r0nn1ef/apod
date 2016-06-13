@@ -24,12 +24,12 @@ class ApodController extends ControllerBase {
     $today = DrupalDateTime::createFromTimestamp( mktime(0, 0, 0, date('m'), date('j'), date('Y')) );
 
     if ( !empty($date) ) {
-      if ( is_int($date) ) {
+      if ( ctype_digit($date) ) {
         $date = DrupalDateTime::createFromTimestamp($date);
       } elseif ( is_string( $date ) && preg_match( '/[0-9]{4}(\-[0-9]{2}){2}/', $date ) ) {
         $date = DrupalDateTime::createFromTimestamp( strtotime( $date ) );
       } else {
-        $date = NULL;
+        $date = $today;
       }
     } else {
       $date = $today;

@@ -63,7 +63,7 @@ class APODService {
       if ( $response->getStatusCode() == 200 ) {
         $data = json_decode( $response->getBody() );
       } else {
-        drupal_set_message('HTTP request resulted in a ' . $response->getStatusCode() . ' response', 'warning');
+        drupal_set_message('HTTP request resulted in a ' . $response->getStatusCode() . ' response.', 'warning');
         return FALSE;
       }
       

@@ -1,3 +1,0 @@
-services:
-  apod.service:
-     class: Drupal\apod\Service\APODService

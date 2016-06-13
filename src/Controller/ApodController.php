@@ -16,6 +16,7 @@ use Drupal\Core\Link;
 class ApodController extends ControllerBase {
 
   const ONE_DAY = 86400;
+  const APOD_DATE_DEFAULT_FORMAT = 'Y-m-d';
 
   public function content($date=NULL) {
     // First Astronomy Picture of the day appears to be July 1, 1995.
@@ -44,19 +45,19 @@ class ApodController extends ControllerBase {
 
     if ( $date->format('U') > $first_image->format('U') ) {
       $previous_date = DrupalDateTime::createFromTimestamp( $date->format('U') - self::ONE_DAY );
-      $items[] = Link::fromTextAndUrl($this->t('&laquo; Previous'), Url::fromRoute('apod.date_page', array('date' => $previous_date->format('Y-m-d'))));
+      $items[] = Link::fromTextAndUrl($this->t( '&laquo; Previous' ), Url::fromRoute( 'apod.date_page', array( 'date' => $previous_date->format( self::APOD_DATE_DEFAULT_FORMAT ) ) ) );
     }
 
     if ( $date->format('U') < $today->format('U') ) {
       $next_date = DrupalDateTime::createFromTimestamp( $date->format('U') + self::ONE_DAY );
-      $items[] = Link::fromTextAndUrl($this->t('Next &raquo;'), Url::fromRoute('apod.date_page', array('date' => $next_date->format('Y-m-d'))));
+      $items[] = Link::fromTextAndUrl($this->t( 'Next &raquo;' ), Url::fromRoute( 'apod.date_page', array( 'date' => $next_date->format( self::APOD_DATE_DEFAULT_FORMAT ) ) ) );
 
     }
 
     // We'll add a quick link to get back to today's image.
     if ( $date->format('U') != $today->format('U')) {
       $items[] = ' ';
-      $items[] = Link::fromTextAndUrl($this->t('Today\'s image'), Url::fromRoute('apod.date_page', array('date' => $today->format('Y-m-d'))));
+      $items[] = Link::fromTextAndUrl( $this->t( 'Today\'s image' ), Url::fromRoute( 'apod.date_page', array( 'date' => $today->format( self::APOD_DATE_DEFAULT_FORMAT ) ) ) );
     }
 
     $build['content'] = array(

@@ -4,7 +4,7 @@
   "description": "NASA Astronomy Picture of the Day",
   "keywords": ["Drupal", "NASA"],
   "license": "GPL-2.0+",
-  "homepage": "https://githumb.com/r0nn1ef/apod",
+  "homepage": "https://github.com/r0nn1ef/apod",
   "minimum-stability": "dev",
   "support": {
     "issues": "https://github.com/r0nn1ef/apod/issues",

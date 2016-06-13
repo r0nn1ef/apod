@@ -28,7 +28,30 @@ function apod_theme($existing, $type, $theme, $path) {
 
 /**
  * Implements hook_preprocess_html().
+ * 
+ * Add custom
  */
 function apod_preprocess_html(&$variables) {
-  $variables['attributes']['class'][] = 'page-astronomy-picture-of-the-day';
+  $route = \Drupal::request()->get(Symfony\Cmf\Component\Routing\RouteObjectInterface::ROUTE_NAME);
+  if ( $route == 'apod.default_page' || $route == 'apod.date_page' ) {
+    $variables['attributes']['class'][] = 'page-astronomy-picture-of-the-day';
+  }
 }
+
+function apod_preprocess_page(&$variables) {
+}
+
+/**
+ * Implements hook_theme_suggestions_alter().
+ */
+function apod_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
+  $route = \Drupal::request()->get(Symfony\Cmf\Component\Routing\RouteObjectInterface::ROUTE_NAME);
+  if ( $route == 'apod.default_page' || $route == 'apod.date_page' ) {
+    $base = drupal_get_path('module', 'apod') . '/templates/';
+    $suggestions[] = $base . $hook .'__apod_default';
+    $suggestions[] = $base . $hook . '__apod';
+    $suggestions[] = $hook .'__apod_default';
+    $suggestions[] = $hook . '__apod';
+  }
+}
+

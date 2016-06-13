@@ -35,12 +35,10 @@ class ApodController extends ControllerBase {
     $service = \Drupal::service('apod.service');
 
     $image = $service->getImage($date, TRUE);
-
-    $build = array();
     
 
 
-    $build['content']['image'] = array(
+    $build['image'] = array(
       '#theme' => ($image->type == 'video' ? "apod_video" : "apod_image"),
       '#item' => (array)$image,
       '#attached' => array(
@@ -49,11 +47,20 @@ class ApodController extends ControllerBase {
         ),
       ),
     );
+    $build['#date'] = $date;
+    
+    return $build;
+
+    /*
+     * @todo add a working pager for previous and next images.
+     */
+
+    $pager_links = array();
 
     if ( $date->format('U') > $first_image->format('U') ) {
       $previous_date = DrupalDateTime::createFromTimestamp( $date->format('U') - self::ONE_DAY );
       $path = 'astronomy-picture-of-the-day/' . $previous_date->format('Y-m-d');
-      $build['content']['prev_link'] = array(
+      $pager_links[] = array(
         '#theme' => 'link',
         '#path' => $path,
         '#alt' => '',
@@ -64,7 +71,7 @@ class ApodController extends ControllerBase {
     if ( $date->format('U') > $today->format('U') ) {
       $next_date = DrupalDateTime::createFromTimestamp( $date->format('U') + self::ONE_DAY );
       $path = 'astronomy-picture-of-the-day/' . $next_date->format('Y-m-d');
-      $build['content']['next_link'] = array(
+      $pager_links[] = array(
         '#theme' => 'link',
         '#path' => $path,
         '#alt' => '',
@@ -72,6 +79,14 @@ class ApodController extends ControllerBase {
       );
     }
 
-    return $build;
+    if ( !empty($pager_links) ) {
+      $build['apod']['my_pager'] = array(
+        '#theme' => 'item_list',
+        '#items' => $pager_links,
+        '#list_type' => 'ul'
+      );
+    }
+
+
   }
 }

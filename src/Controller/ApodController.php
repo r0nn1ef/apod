@@ -10,6 +10,8 @@ namespace Drupal\apod\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
 
 class ApodController extends ControllerBase {
 
@@ -35,58 +37,42 @@ class ApodController extends ControllerBase {
     $service = \Drupal::service('apod.service');
 
     $image = $service->getImage($date, TRUE);
-    
-
-
-    $build['image'] = array(
-      '#theme' => ($image->type == 'video' ? "apod_video" : "apod_image"),
-      '#item' => (array)$image,
-      '#attached' => array(
-        'library' =>  array(
-          'apod/default_page'
-        ),
-      ),
-    );
-    $build['#date'] = $date;
-    
-    return $build;
 
     /*
      * @todo add a working pager for previous and next images.
      */
 
-    $pager_links = array();
+    $items = array();
 
     if ( $date->format('U') > $first_image->format('U') ) {
       $previous_date = DrupalDateTime::createFromTimestamp( $date->format('U') - self::ONE_DAY );
-      $path = 'astronomy-picture-of-the-day/' . $previous_date->format('Y-m-d');
-      $pager_links[] = array(
-        '#theme' => 'link',
-        '#path' => $path,
-        '#alt' => '',
-        '#text' => $this->t('&laquo; Previous')
-      );
+      $items[] = Link::fromTextAndUrl($this->t('&laquo; Previous'), Url::fromRoute('apod.date_page', array('date' => $previous_date->format('Y-m-d'))));
     }
 
-    if ( $date->format('U') > $today->format('U') ) {
+    if ( $date->format('U') < $today->format('U') ) {
       $next_date = DrupalDateTime::createFromTimestamp( $date->format('U') + self::ONE_DAY );
-      $path = 'astronomy-picture-of-the-day/' . $next_date->format('Y-m-d');
-      $pager_links[] = array(
-        '#theme' => 'link',
-        '#path' => $path,
-        '#alt' => '',
-        '#text' => $this->t('Next &raquo;')
-      );
+      $items[] = Link::fromTextAndUrl($this->t('Next &raquo;'), Url::fromRoute('apod.date_page', array('date' => $next_date->format('Y-m-d'))));
     }
 
-    if ( !empty($pager_links) ) {
-      $build['apod']['my_pager'] = array(
+    $build['content'] = array(
+      '#theme' => 'apod_content',
+      '#image' =>array(
+        '#theme' => ($image->type == 'video' ? "apod_video" : "apod_image"),
+        '#item' => (array)$image,
+        '#attached' => array(
+          'library' =>  array(
+            'apod/default_page'
+          ),
+        ),
+      ),
+      '#links' => array(
         '#theme' => 'item_list',
-        '#items' => $pager_links,
-        '#list_type' => 'ul'
-      );
-    }
+        '#items' => $items,
+        '#list_type' => 'ul',
+      ),
+    );
 
+    return $build;
 
   }
 }

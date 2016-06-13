@@ -50,6 +50,13 @@ class ApodController extends ControllerBase {
     if ( $date->format('U') < $today->format('U') ) {
       $next_date = DrupalDateTime::createFromTimestamp( $date->format('U') + self::ONE_DAY );
       $items[] = Link::fromTextAndUrl($this->t('Next &raquo;'), Url::fromRoute('apod.date_page', array('date' => $next_date->format('Y-m-d'))));
+
+    }
+
+    // We'll add a quick link to get back to today's image.
+    if ( $date->format('U') != $today->format('U')) {
+      $items[] = ' ';
+      $items[] = Link::fromTextAndUrl($this->t('Today\'s image'), Url::fromRoute('apod.date_page', array('date' => $today->format('Y-m-d'))));
     }
 
     $build['content'] = array(
@@ -63,11 +70,17 @@ class ApodController extends ControllerBase {
           ),
         ),
       ),
+      '#image_date' => $date,
       '#links' => array(
         '#theme' => 'item_list',
         '#items' => $items,
         '#list_type' => 'ul',
+        '#attributes' => array(
+          'id' => 'apod-navigation',
+          'class' => array('pager__items')
+        ),
       ),
+      '#description' => check_markup($image->explanation),
     );
 
     return $build;

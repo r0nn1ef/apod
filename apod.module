@@ -15,7 +15,9 @@ function apod_theme($existing, $type, $theme, $path) {
       'template' => 'apod_content',
       'variables' => array(
         'image' => NULL,
-        'links' => NULL
+        'image_date' => NULL,
+        'links' => NULL,
+        'description' => NULL,
       )
     ),
     'apod_image' => array(

@@ -1,3 +1,12 @@
 .page-astronomy-picture-of-the-day .content a.apod-image-link {
   border-bottom: none;
 }
+
+div.item-list > ul#apod-navigation > li {
+  display: inline;
+  padding: 0.5em;
+}
+
+div.item-list > ul#apod-navigation > li.is-active {
+  font-weight: bold;
+}

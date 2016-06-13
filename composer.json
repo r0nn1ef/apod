@@ -2,13 +2,13 @@
   "name": "drupal/apod",
   "type": "drupal-module",
   "description": "NASA Astronomy Picture of the Day",
-  "keywords": ["Drupal"],
+  "keywords": ["Drupal", "NASA"],
   "license": "GPL-2.0+",
-  "homepage": "https://www.drupal.org/project/apod",
+  "homepage": "https://githumb.com/r0nn1ef/apod",
   "minimum-stability": "dev",
   "support": {
-    "issues": "http://drupal.org/project/issues/apod",
-    "source": "http://cgit.drupalcode.org/apod"
+    "issues": "https://github.com/r0nn1ef/apod/issues",
+    "source": "https://github.com/r0nn1ef/apod/tree/8.x-1.x"
   },
   "require": { }
 }

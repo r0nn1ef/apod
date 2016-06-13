@@ -17,6 +17,7 @@ class APODService {
   private $api_key;
 
   const SERVICE_URL = 'https://api.nasa.gov/planetary/apod';
+  const ONE_DAY = 86400;
 
   function __construct() {
     $config = \Drupal::config('apod.settings');
@@ -66,7 +67,7 @@ class APODService {
         return FALSE;
       }
       
-      $expire = $date->format('U') + (60 * 60 * 24); // expire the cache in one day.
+      $expire = $date->format('U') + self::ONE_DAY; // expire the cache in one day.
 
       \Drupal::cache()->set($cid, $data, $expire);
     }

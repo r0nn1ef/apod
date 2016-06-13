@@ -16,7 +16,7 @@ use Drupal\Core\Link;
 class ApodController extends ControllerBase {
 
   const ONE_DAY = 86400;
-  const APOD_DATE_DEFAULT_FORMAT = 'Y-m-d';
+  const APOD_DATE_DEFAULT_FORMAT = 'U';
 
   public function content($date=NULL) {
     // First Astronomy Picture of the day appears to be July 1, 1995.
@@ -25,7 +25,8 @@ class ApodController extends ControllerBase {
 
     if ( !empty($date) ) {
       if ( ctype_digit($date) ) {
-        $date = DrupalDateTime::createFromTimestamp($date);
+        $date = (int)$date;
+        $date = DrupalDateTime::createFromTimestamp( mktime(0, 0, 0, date('m', $date), date('j', $date), date('Y', $date)) );
       } elseif ( is_string( $date ) && preg_match( '/[0-9]{4}(\-[0-9]{2}){2}/', $date ) ) {
         $date = DrupalDateTime::createFromTimestamp( strtotime( $date ) );
       } else {

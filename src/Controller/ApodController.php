@@ -55,12 +55,6 @@ class ApodController extends ControllerBase {
 
     }
 
-    // We'll add a quick link to get back to today's image.
-    if ( $date->format('U') != $today->format('U')) {
-      $items[] = ' ';
-      $items[] = Link::fromTextAndUrl( $this->t( 'Today\'s image' ), Url::fromRoute( 'apod.date_page', array( 'date' => $today->format( self::APOD_DATE_DEFAULT_FORMAT ) ) ) );
-    }
-
     $build['content'] = array(
       '#theme' => 'apod_content',
       '#title' => array('#plain_text' => $image->title),

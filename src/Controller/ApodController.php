@@ -16,7 +16,7 @@ use Drupal\Core\Link;
 class ApodController extends ControllerBase {
 
   const ONE_DAY = 86400;
-  const APOD_DATE_DEFAULT_FORMAT = 'U';
+  const APOD_DATE_DEFAULT_FORMAT = 'Y-m-d';
 
   public function content($date=NULL) {
     // First Astronomy Picture of the day appears to be July 1, 1995.

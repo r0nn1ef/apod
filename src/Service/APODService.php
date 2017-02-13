@@ -55,15 +55,19 @@ class APODService {
       try {
         $response = $client->get(self::SERVICE_URL, $options);
       } catch ( RequestException $e ) {
-        // @todo figure out what to do with the error.
-        drupal_set_message($e->getMessage(), 'error');
+        \Drupal::logger('apod')->alert($e->getMessage());
         return FALSE;
       }
 
       if ( $response->getStatusCode() == 200 ) {
         $data = json_decode( $response->getBody() );
       } else {
-        drupal_set_message('HTTP request resulted in a ' . $response->getStatusCode() . ' response.', 'warning');
+        $message = 'HTTP request resulted in a @status response; @body';
+        $params = array(
+          '@status' => $response->getStatusCode(),
+          '@body' => $response->getReasonPhrase(),
+        );
+        \Drupal::logger('apod')->critical($message, $params);
         return FALSE;
       }
       

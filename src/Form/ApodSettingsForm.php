@@ -48,6 +48,18 @@ class ApodSettingsForm extends ConfigFormBase {
     if ( empty($value) ) {
       $value = 'DEMO_KEY';
     }
+
+    if ( $config->get('api_key') != $value ) {
+      $message = 'NASA API key changed by @user from @old to @new on @date.';
+      $params = array(
+        '@user' => \Drupal::currentUser()->getAccountName(),
+        '@old' => $config->get('api_key'),
+        '@new' => $value,
+        '@date' => \Drupal::service('data.formatter')->format(REQUEST_TIME, 'medium'),
+      );
+      \Drupal::logger('apod')->warning($message, $params);
+    }
+
     $config->set('api_key', $value );
     $config->save();
     parent::submitForm($form, $form_state);

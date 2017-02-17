@@ -12,6 +12,15 @@ project have stable releases.
 
 Please checkout and use the 8.x-1.x branch as Master will remain empty.
 
+## Suggested Configuration
+
+NASA does not require an API key to use the API associated with this module.
+However, without an API key, rate limiting calls will be introduced. To apply
+for an key, visit [https://api.nasa.gov/index.html#apply-for-an-api-key](https://api.nasa.gov/index.html#apply-for-an-api-key).
+
+Once you have received your API key, log in to your website and browse to 
+Administration &raquo; Configuration &raquo; Web Services &raquo; Astronomy Picture of the Day Settings
+
 ## Usage
 
 Once enabled, you will be able to use the following features:

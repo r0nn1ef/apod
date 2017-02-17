@@ -9,13 +9,13 @@ apod.default_page:
     path: /astronomy-picture-of-the-day
     defaults:
       _controller: \Drupal\apod\Controller\ApodController::content
-      _title: NASA Astronomy Image of the Day
+      _title: NASA Astronomy Picture of the Day
     requirements:
       _permission: access content
 apod.date_page:
     path: /astronomy-picture-of-the-day/{date}
     defaults:
       _controller: \Drupal\apod\Controller\ApodController::content
-      _title: NASA Astronomy Image of the Day
+      _title: NASA Astronomy Picture of the Day
     requirements:
       _permission: access content

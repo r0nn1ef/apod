@@ -55,7 +55,7 @@ class ApodSettingsForm extends ConfigFormBase {
         '@user' => \Drupal::currentUser()->getAccountName(),
         '@old' => $config->get('api_key'),
         '@new' => $value,
-        '@date' => \Drupal::service('data.formatter')->format(REQUEST_TIME, 'medium'),
+        '@date' => \Drupal::service('date.formatter')->format(REQUEST_TIME, 'custom', 'Y-m-j H:i:s A'),
       );
       \Drupal::logger('apod')->warning($message, $params);
     }

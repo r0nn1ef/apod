@@ -30,6 +30,8 @@ class APODService {
      * @return false|mixed
      */
   public function getImage(\Drupal\Core\Datetime\DrupalDateTime $date = NULL, $useHD = FALSE) {
+      // This is the first day where an image/video is available.
+      $max_date = DrupalDateTime::createFromArray(['year' => 1995, 'month' => 6, 'day' => 16]);
     /*
      * We want our datetime to be midnight on the given day so we can expire the cache properly.
      */
@@ -38,6 +40,11 @@ class APODService {
     } else {
       $date = $date->format('U');
       $date = DrupalDateTime::createFromTimestamp( mktime(0, 0, 0, date('m', $date), date('j', $date), date('Y', $date) ) );
+    }
+
+    if ( $date->getTimestamp() < $max_date->getTimestamp() ) {
+        \Drupal::service('messenger')->addMessage('NASA\'s API only contains image from June 16, 1996 forward.', 'warning');
+        $date = new DrupalDateTime();
     }
 
     $cid = 'apod:' . $date->format('Y-m-d') . (!$useHD ? '' : '-HD');

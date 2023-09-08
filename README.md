@@ -7,9 +7,23 @@ Provides a page and block with NASA's Astronomy Image of the Day.
 This module was designed as a training tool for learning the Drupal 8 API's
 and has been updated to support Drupal ^9.5 and ^10.
 
-## Version
+## Installing using Composer
 
-Please checkout and use the 2.0.x branch as Master will remain empty.
+To install this module using composer, you will first need to add this repository to your <code>composer.json</code>
+file. In the _repositories_ section of your composer.json file, add the following:
+
+<pre>
+{
+    "type": "vcs",
+    "url": "git@github.com:r0nn1ef/apod.git"
+}
+</pre>
+
+Once you add the repository, you can install the module as normal using the following to get the latest release:
+
+<pre>
+composer require r0nn1ef/apod:^2.0
+</pre>
 
 ## Suggested Configuration
 

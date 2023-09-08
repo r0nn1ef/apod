@@ -43,7 +43,7 @@ class APODService {
     }
 
     if ( $date->getTimestamp() < $max_date->getTimestamp() ) {
-        \Drupal::service('messenger')->addMessage('NASA\'s API only contains image from June 16, 1996 forward.', 'warning');
+        \Drupal::service('messenger')->addMessage('NASA\'s API only contains image from June 16, 1995 forward.', 'warning');
         $date = new DrupalDateTime();
     }
 

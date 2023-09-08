@@ -24,6 +24,11 @@ class APODService {
     $this->api_key = $config->get('api_key');
   }
 
+    /**
+     * @param DrupalDateTime|NULL $date
+     * @param boolean $useHD defaults to FALSE
+     * @return false|mixed
+     */
   public function getImage(\Drupal\Core\Datetime\DrupalDateTime $date = NULL, $useHD = FALSE) {
     /*
      * We want our datetime to be midnight on the given day so we can expire the cache properly.

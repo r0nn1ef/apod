@@ -10,3 +10,8 @@ div.item-list > ul#apod-navigation > li {
 div.item-list > ul#apod-navigation > li.is-active {
   font-weight: bold;
 }
+
+iframe.apod-video {
+  width: 100%;
+  height: auto;
+}

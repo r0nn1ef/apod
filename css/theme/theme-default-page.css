@@ -2,6 +2,10 @@
   border-bottom: none;
 }
 
+div.item-list {
+  text-align: center;
+}
+
 div.item-list > ul#apod-navigation > li {
   display: inline;
   padding: 0.5em;

@@ -63,7 +63,7 @@ function apod_theme_suggestions_alter(array &$suggestions, array $variables, $ho
 {
     $route = \Drupal::request()->get(RouteObjectInterface::ROUTE_NAME);
     if ($route == 'apod.default_page' || $route == 'apod.date_page') {
-        $base = \Drupal::service('extension.path.resolver')->getPath('apod') . '/templates/';
+        $base = \Drupal::service('extension.path.resolver')->getPath('module', 'apod') . '/templates/';
         $suggestions[] = $base . $hook . '__apod_default';
         $suggestions[] = $base . $hook . '__apod';
         $suggestions[] = $hook . '__apod_default';

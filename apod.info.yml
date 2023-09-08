@@ -1,7 +1,6 @@
-name: Astronomy Picture of the Day
+name: 'Astronomy Picture of the Day'
 type: module
-description: Provides a page and block with NASA's Astronomy Image of the Day.
-
+description: 'Provides a page and block with NASA's Astronomy Image of the Day.'
+core_version_requirement: ^9.5 || ^10.1
 configure: apod.settings
-
-core: 8.x
+package: Other

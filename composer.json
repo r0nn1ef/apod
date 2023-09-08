@@ -9,5 +9,10 @@
   "support": {
     "issues": "https://github.com/r0nn1ef/apod/issues",
     "source": "https://github.com/r0nn1ef/apod/tree/2.0.x"
+  },
+  "extra": {
+    "branch-alias": {
+      "2.0": "2.0.x"
+    }
   }
 }

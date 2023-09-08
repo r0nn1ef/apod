@@ -8,9 +8,6 @@
   "minimum-stability": "dev",
   "support": {
     "issues": "https://github.com/r0nn1ef/apod/issues",
-    "source": "https://github.com/r0nn1ef/apod/tree/8.x-1.x"
-  },
-  "require": {
-    "drupal/core" : "8.1.*"
+    "source": "https://github.com/r0nn1ef/apod/tree/2.0.x"
   }
 }

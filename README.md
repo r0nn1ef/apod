@@ -4,13 +4,12 @@ Provides a page and block with NASA's Astronomy Image of the Day.
 
 ## Purpose
 
-This module was designed as a training tool for learning the new Drupal 8 API's.
-Full integration with other contributed modules will be added as the individual
-project have stable releases.
+This module was designed as a training tool for learning the Drupal 8 API's
+and has been updated to support Drupal ^9.5 and ^10.
 
 ## Version
 
-Please checkout and use the 8.x-1.x branch as Master will remain empty.
+Please checkout and use the 2.0.x branch as Master will remain empty.
 
 ## Suggested Configuration
 
@@ -34,5 +33,4 @@ _YYYY-MM-DD_ format or a UNIX timestamp.
 
 ## TODO
 
-This module should be refactored once the Media module for Drupal 8 has
-been released.
+Refactor to use dependency injection for services, routes, and blocks.

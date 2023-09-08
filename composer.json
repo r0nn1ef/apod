@@ -1,5 +1,5 @@
 {
-  "name": "drupal/apod",
+  "name": "r0nn1ef/apod",
   "type": "drupal-module",
   "description": "NASA Astronomy Picture of the Day",
   "keywords": ["Drupal", "NASA"],

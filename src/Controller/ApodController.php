@@ -12,11 +12,17 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Url;
 use Drupal\Core\Link;
+use Drupal\Core\Routing\TrustedRedirectResponse;
 
 class ApodController extends ControllerBase {
 
   const ONE_DAY = 86400;
   const APOD_DATE_DEFAULT_FORMAT = 'Y-m-d';
+
+  public function index() {
+    $today = new DrupalDateTime('now', date_default_timezone_get() );
+    return $this->redirect('apod.date_page', ['date' => $today->format('Y-m-d')]);
+  }
 
   public function content($date=NULL) {
     // First Astronomy Picture of the day appears to be July 1, 1995.

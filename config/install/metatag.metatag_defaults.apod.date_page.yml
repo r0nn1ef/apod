@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies: { }
+id: apod.date_page
+label: '/astronomy-picture-of-the-day/*'
+tags:
+  abstract: '[apod:explanation]'
+  article_author: 'National Aeronautics and Space Administration (NASA)'
+  article_publisher: 'National Aeronautics and Space Administration (NASA)'
+  author: 'National Aeronautics and Space Administration (NASA)'
+  canonical_url: '[apod:url]'
+  dcterms_creator: 'National Aeronautics and Space Administration (NASA)'
+  dcterms_description: '[apod:explanation]'
+  dcterms_title: '[apod:title]'
+  description: '[apod:explanation]'
+  image_src: '[apod:image]'
+  og_description: '[apod:explanation]'
+  og_image: '[apod:image]'
+  og_image_alt: '[apod:title]'
+  og_image_secure_url: '[apod:image]'
+  og_title: '[apod:title]'
+  og_type: '[apod:media_type]'
+  og_video: '[apod:video]'
+  og_video_secure_url: '[apod:video]'
+  original_source: '[apod:url]'
+  referrer: no-referrer
+  title: '[apod:title]'

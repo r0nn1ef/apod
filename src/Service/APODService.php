@@ -29,7 +29,7 @@ class APODService {
      * @param boolean $useHD defaults to FALSE
      * @return false|mixed
      */
-  public function getImage(\Drupal\Core\Datetime\DrupalDateTime $date = NULL, $useHD = FALSE) {
+  public function getImage(DrupalDateTime $date = NULL, $useHD = FALSE) {
       // This is the first day where an image/video is available.
       $max_date = DrupalDateTime::createFromArray(['year' => 1995, 'month' => 6, 'day' => 16]);
     /*
@@ -57,7 +57,9 @@ class APODService {
         'query' => array(
           'api_key' => $this->api_key,
           'date' => $date->format('Y-m-d'),
-          'hd' => (int) $useHD,
+          'hd' => $useHD ? 'True': 'False',
+          'thumbs' => 'True',
+          'concept_tags' => 'True'
         )
       );
 

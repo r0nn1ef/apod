@@ -56,30 +56,33 @@ function apod_tokens($type, $tokens, array $data, array $options, BubbleableMeta
       $api_data = FALSE;
     }
 
-    foreach ($tokens as $name => $original) {
-      switch ($name) {
-        case 'title':
-          $replacements[$original] = $api_data->title;
-          break;
-        case 'explanation':
-          $replacements[$original] = $api_data->explanation;
-          break;
-        case 'url':
-          $replacements[$original] = 'https://apod.nasa.gov/apod/ap' . $api_date->format('ymd') . '.html';
-          break;
-        case 'image':
-          $replacements[$original] = $api_data->media_type == 'image' ? $api_data->url : $api_data->thumbnail_url;
-          break;
-        case 'image_hd':
-          $replacements[$original] = $api_data->hdurl ?? '';
-          break;
-        case 'video':
-          $replacements[$original] = $api_data->media_type == 'video' ? $api_data->url : NULL;
-          break;
-        case 'media-type':
-          $replacements[$original] = $api_data->media_type;
+    if ( is_object($api_data) ) {
+      foreach ($tokens as $name => $original) {
+        switch ($name) {
+          case 'title':
+            $replacements[$original] = $api_data->title;
+            break;
+          case 'explanation':
+            $replacements[$original] = $api_data->explanation;
+            break;
+          case 'url':
+            $replacements[$original] = 'https://apod.nasa.gov/apod/ap' . $api_date->format('ymd') . '.html';
+            break;
+          case 'image':
+            $replacements[$original] = $api_data->media_type == 'image' ? $api_data->url : $api_data->thumbnail_url;
+            break;
+          case 'image_hd':
+            $replacements[$original] = $api_data->hdurl ?? '';
+            break;
+          case 'video':
+            $replacements[$original] = $api_data->media_type == 'video' ? $api_data->url : NULL;
+            break;
+          case 'media-type':
+            $replacements[$original] = $api_data->media_type;
+        }
       }
     }
+
   }
 
   return $replacements;

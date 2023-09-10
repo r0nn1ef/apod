@@ -26,14 +26,11 @@ class ApodController extends ControllerBase {
 
   public function content($date=NULL) {
     // First Astronomy Picture of the day appears to be July 1, 1995.
-    $first_image = DrupalDateTime::createFromTimestamp( mktime(0, 0, 0, 7, 1, 1995) );
-    $today = DrupalDateTime::createFromTimestamp( mktime(0, 0, 0, date('m'), date('j'), date('Y')) );
+    $first_image = DrupalDateTime::createFromTimestamp( strtotime('1995-06-16') );
+    $today = new DrupalDateTime('now');;
 
     if ( !empty($date) ) {
-      if ( ctype_digit($date) ) {
-        $date = (int)$date;
-        $date = DrupalDateTime::createFromTimestamp( mktime(0, 0, 0, date('m', $date), date('j', $date), date('Y', $date)) );
-      } elseif ( is_string( $date ) && preg_match( '/[0-9]{4}(\-[0-9]{2}){2}/', $date ) ) {
+      if ( is_string( $date ) && preg_match( '/[0-9]{4}(\-[0-9]{2}){2}/', $date ) ) {
         $date = DrupalDateTime::createFromTimestamp( strtotime( $date ) );
       } else {
         $date = $today;

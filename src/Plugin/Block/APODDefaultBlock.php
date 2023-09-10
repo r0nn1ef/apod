@@ -25,7 +25,7 @@ class APODDefaultBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
-    $service = \Drupal::service('apod.service');
+    $service = \Drupal::service('apod.api');
     $image = $service->getImage(NULL, TRUE);
 
     return array(

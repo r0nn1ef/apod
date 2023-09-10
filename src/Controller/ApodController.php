@@ -36,7 +36,7 @@ class ApodController extends ControllerBase {
       $date = $today;
     }
 
-    $service = \Drupal::service('apod.service');
+    $service = \Drupal::service('apod.api');
     $image = $service->getImage($date, TRUE);
 
     /*

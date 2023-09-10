@@ -36,10 +36,7 @@ class APODService {
      * We want our datetime to be midnight on the given day so we can expire the cache properly.
      */
     if ( is_null($date) ) {
-      $date = DrupalDateTime::createFromTimestamp( mktime(0, 0, 0, date('m'), date('j'), date('Y') ) ) ;
-    } else {
-      $date = $date->format('U');
-      $date = DrupalDateTime::createFromTimestamp( mktime(0, 0, 0, date('m', $date), date('j', $date), date('Y', $date) ) );
+      $date = new DrupalDateTime('now');
     }
 
     if ( $date->getTimestamp() < $max_date->getTimestamp() ) {

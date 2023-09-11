@@ -9,6 +9,8 @@
 namespace Drupal\apod\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Cache\CacheableResponse;
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Url;
 use Drupal\Core\Link;
@@ -89,10 +91,16 @@ class ApodController extends ControllerBase {
         ),
       ),
       '#description' => check_markup($image->explanation),
-      '#copyright' => check_markup(($image->copyright ?? ''))
+      '#copyright' => check_markup(($image->copyright ?? '')),
+      '#cache' => [
+        'max-age' => 600,
+        'contexts' => ['url']
+      ]
     );
 
-    return $build;
+    $response = new CacheableResponse($build);
+    $response->addCacheableDependency(CacheableMetadata::createFromRenderArray($build));
+    return $response;
 
   }
 }

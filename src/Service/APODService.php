@@ -72,6 +72,7 @@ class APODService {
 
       if ( $response->getStatusCode() == 200 ) {
         $data = json_decode( $response->getBody() );
+        \Drupal::logger('apod')->debug('<pre>@data</pre>', ['@data' => print_r($data, true)]);
       } else {
         $message = 'HTTP request resulted in a @status response; @body';
         $params = array(

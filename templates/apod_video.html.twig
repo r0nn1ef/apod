@@ -1,3 +1,6 @@
 <div class="videoWrapper">
     <iframe class="apod-video" width="560" height="349" src="{{ item.url }}" title="{{ item.title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
+{% if item.copyright and not empty item.copyright %}
+  <div class="copyright">{{ item.copyright|striptags }}</div>
+{% endif %}

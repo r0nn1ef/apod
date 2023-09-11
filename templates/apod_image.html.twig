@@ -1,3 +1,8 @@
-<a class="apod-image-link" href="https://apod.nasa.gov/apod/ap{{ item.date|date('ymd') }}.html" rel="nofollow" title="{{ item.title }}" target="_blank">
-    <img src="{{ item.hdurl|default(item.url) }}" width="100%" class="apod-image" alt="{{ item.title }}" style="width:100%;height:auto" />
-</a>
+<figure>
+    <a class="apod-image-link" href="https://apod.nasa.gov/apod/ap{{ item.date|date('ymd') }}.html" rel="nofollow" title="{{ item.title }}" target="_blank">
+     <img src="{{ item.hdurl|default(item.url) }}" width="100%" class="apod-image" alt="{{ item.title }}" style="width:100%;height:auto" />
+    </a>
+    {% if item.copyright and item.copyright is not empty %}
+      <figcaption>{{ 'Copyright'|t }} &copy; {{ item.copyright }}</figcaption>
+    {% endif %}
+</figure>

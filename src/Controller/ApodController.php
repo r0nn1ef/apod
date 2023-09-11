@@ -81,6 +81,7 @@ class ApodController extends ControllerBase {
         ),
       ),
       '#description' => check_markup($image->explanation),
+      '#copyright' => check_markup(($image->copyright ?? ''))
     );
 
     return $build;

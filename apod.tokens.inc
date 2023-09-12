@@ -85,7 +85,7 @@ function apod_tokens($type, $tokens, array $data, array $options, BubbleableMeta
             $replacements[$original] = $api_data->media_type;
             break;
           case 'og-type':
-            $replacements[$original] = $api_data->media_type == 'video' ? 'video.movie': '';
+            $replacements[$original] = $api_data->media_type == 'video' ? 'video.movie': 'article';
             break;
         }
       }

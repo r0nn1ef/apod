@@ -1,0 +1,14 @@
+<div>
+    {% if data.image.media_type == 'video' %}
+      {% set image_url = data.image.thumbnail_url %}
+    {% else %}
+      {% set image_url = data.image.url %}
+    {% endif %}
+    <a href="{{ data.link.url }}" title="{{ data.image.title }}"><img src="{{ image_url }}" alt="{{ data.image.title }}" title="{{ data.image.title }}"/></a>
+</div>
+<div>
+    <strong>{{ data.image.title }}</strong>
+</div>
+<div>
+    {{ data.link }}
+</div>

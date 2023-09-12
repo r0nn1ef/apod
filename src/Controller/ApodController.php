@@ -98,9 +98,7 @@ class ApodController extends ControllerBase {
       ]
     );
 
-    $response = new CacheableResponse($build);
-    $response->addCacheableDependency(CacheableMetadata::createFromRenderArray($build));
-    return $response;
+    return $build;
 
   }
 }

@@ -17,6 +17,11 @@ class APODService {
   private $api_key;
 
   const SERVICE_URL = 'https://api.nasa.gov/planetary/apod';
+
+  /**
+   * @var int FIRST_IMAGE_DATE The first date that an astronomy image is availalbe (June 16, 1995).
+   */
+  const FIRST_IMAGE_DATE = 803278800;
   const ONE_DAY = 86400;
 
   function __construct() {
@@ -27,11 +32,15 @@ class APODService {
     /**
      * @param DrupalDateTime|NULL $date
      * @param boolean $useHD defaults to FALSE
+     * @param int|NULL $count A positive integer, no greater than 100. If this is specified then count randomly chosen images.
+     * @param DrupalDateTime|NULL $start_date
+     * @param DrupalDateTime|NULL $end_date
+     *
      * @return false|mixed
      */
-  public function getImage(DrupalDateTime $date = NULL, $useHD = FALSE) {
+  public function getImage(DrupalDateTime $date = NULL, bool $useHD = FALSE, int $count = NULL, DrupalDateTime $start_date = NULL, DrupalDateTime $end_date = NULL) {
       // This is the first day where an image/video is available.
-      $max_date = DrupalDateTime::createFromArray(['year' => 1995, 'month' => 6, 'day' => 16]);
+      $max_date = DrupalDateTime::createFromTimestamp(self::FIRST_IMAGE_DATE);
     /*
      * We want our datetime to be midnight on the given day so we can expire the cache properly.
      */
@@ -44,7 +53,13 @@ class APODService {
         $date = new DrupalDateTime();
     }
 
-    $cid = 'apod:' . $date->format('Y-m-d') . (!$useHD ? '' : '-HD');
+    if (!empty($count)) {
+      $cid = 'apod:random' . (!$useHD ? '' : '-HD');
+    }
+    else {
+      $cid = 'apod:' . $date->format('Y-m-d') . (!$useHD ? '' : '-HD');
+    }
+
     $data = NULL;
     if ( $cache = \Drupal::cache('data')->get($cid)) {
       $data = $cache->data;
@@ -59,6 +74,25 @@ class APODService {
           'concept_tags' => 'True'
         )
       );
+
+      if ( !is_null($count) && intval($count) > 0 ) {
+        // $count can not be used with 'date', 'start_date', or 'end_date' params.
+        unset($options['query']['date']);
+        if ( intval($count) > 100 ) {
+          \Drupal::messenger()->addWarning($this->t('COUNT parameter can not be greater than 100. Automatically reducing to the maximum.'));
+          $count = 100;
+        }
+        $options['query']['count'] = intval($count);
+      }
+
+      // $count can not be used with 'date', 'start_date', or 'end_date' params.
+      if ( !isset($options['query']['count']) && !empty($start_date) ) {
+        unset($options['query']['date']);
+        $options['query']['start_date'] = $start_date->format('Y-m-d');
+        if ( !is_empty($end_date) ) {
+          $options['query']['end_date'] = $end_date->format('Y-m-d');
+        }
+      }
 
       // Create a HTTP client.
       $client = \Drupal::httpClient();

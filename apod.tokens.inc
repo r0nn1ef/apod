@@ -31,6 +31,10 @@ function apod_token_info() {
     'name' => t('Media type'),
     'description' => t('Media type; either image or video.')
   ];
+  $tokens['apod']['og-type'] = [
+    'name' => t('OG type'),
+    'description' => t('Specific Open Graph type based on the media type of the image.')
+  ];
   $tokens['apod']['video'] = [
     'name' => t('Video'),
     'description' => t('The video URL if media type is video.')
@@ -79,6 +83,10 @@ function apod_tokens($type, $tokens, array $data, array $options, BubbleableMeta
             break;
           case 'media-type':
             $replacements[$original] = $api_data->media_type;
+            break;
+          case 'og-type':
+            $replacements[$original] = $api_data->media_type == 'video' ? 'video.movie': '';
+            break;
         }
       }
     }

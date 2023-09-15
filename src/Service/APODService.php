@@ -19,10 +19,9 @@ class APODService {
   const SERVICE_URL = 'https://api.nasa.gov/planetary/apod';
 
   /**
-   * @var int FIRST_IMAGE_DATE The first date that an astronomy image is availalbe (June 16, 1995).
+   * @var int FIRST_IMAGE_DATE The first date that an astronomy image is available (June 16, 1995).
    */
   const FIRST_IMAGE_DATE = 803278800;
-  const ONE_DAY = 86400;
 
   function __construct() {
     $config = \Drupal::config('apod.settings');
@@ -106,7 +105,6 @@ class APODService {
 
       if ( $response->getStatusCode() == 200 ) {
         $data = json_decode( $response->getBody() );
-        \Drupal::logger('apod')->debug('<pre>@data</pre>', ['@data' => print_r($data, true)]);
       } else {
         $message = 'HTTP request resulted in a @status response; @body';
         $params = array(
@@ -117,7 +115,7 @@ class APODService {
         return FALSE;
       }
       
-      $expire = $date->format('U') + self::ONE_DAY; // expire the cache in one day.
+      $expire = $date->format('U') + 60*60; // expire the cache in one hour
 
       \Drupal::cache()->set($cid, $data, $expire);
     }

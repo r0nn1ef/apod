@@ -1,5 +1,5 @@
-| :exclamation:  This functionality in this repository has been merged with the  [NASA Astronomy Picture of the Day module](https://www.drupal.org/project/nasa_apod) on Drupal.org and is no longer maintained here. |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :exclamation:  The functionality in this repository has been merged with the  [NASA Astronomy Picture of the Day module](https://www.drupal.org/project/nasa_apod) on Drupal.org and is no longer maintained here. |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 # NASA Astronomy Picture of the Day
 
 Provides a page and block with NASA's Astronomy Image of the Day.
